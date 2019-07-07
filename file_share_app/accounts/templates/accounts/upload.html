@@ -1,0 +1,45 @@
+{% extends "accounts/bash.html" %}
+
+{% block content %}
+<div class="container">
+<form method="POST" style="display:flex;flex-direction:column;" enctype="multipart/form-data">  
+        {% csrf_token %}
+     
+       <div style="display:inline-flex;margin-left:35%;margin-top:2%";>
+     	{{msg}}
+       </div>
+
+     <div style="display:inline-flex;margin-left:35%;margin-top:2%";>
+       {{ form.title.errors }}
+       <div style="width:17%;">
+        <label for="{{ form.title.id_for_label }}">Title:</label>
+       </div>
+       {{ form.title }}
+     </div>
+     
+     <div style="display:inline-flex;margin-left:35%;margin-top:2%";>
+       {{ form.file.errors }}
+       <div style="width:17%;">
+        <label for="{{ form.file.id_for_label }}">File:</label>
+       </div>
+       {{ form.file }}
+     </div>
+     <div style="display:inline-flex;margin-left:35%;margin-top:2%";>
+       {{ form.cover.errors }}
+       <div style="width:17%;">
+        <label for="{{ form.cover.id_for_label }}">Cover:</label>
+       </div>
+       {{ form.cover }}
+     </div>
+     <div style="display:inline-flex;margin-left:35%;margin-top:2%";>
+       {{ form.description.errors }}
+       <div style="width:17%;">
+        <label for="{{ form.description.id_for_label }}">File-Type:</label>
+       </div>
+       {{ form.description }}
+     </div>
+     <input style="width:7%;margin-top:2%;margin-left:45%" type="submit" name="" value="upload">
+</form>  
+</div>
+{% endblock %}
+

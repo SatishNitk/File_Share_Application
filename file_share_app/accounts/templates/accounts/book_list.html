@@ -1,0 +1,89 @@
+{% extends "accounts/bash.html" %}
+{% load refactor %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Cover</th>
+        <th>Title</th>
+        <th>User</th>
+        <th>file-type</th>
+        <th>Download</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+        <tr>
+          <td>
+            {% if book.cover %}
+              <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width:100px;">
+            {% else %}
+              <span class="text-muted">No cover</span>
+            {% endif %}
+          </td>
+          <td>{{ book.title }}</td>
+         
+          <td>{{ book.user }}</td>
+          <td>{{ book.description }}</td>
+
+          <td>
+            <a href="{{ book.file.url }}" id="url_data" class="btn btn-primary btn-sm" target="_blank">
+              Look
+            </a>
+                  
+    <button class="btn btn-primary btn-sm" onclick="ajax_call('{{book.file.url}}')">Download </button>
+
+
+<script type="text/javascript">
+  function ajax_call(name1){
+    $.ajax({
+      type:'POST',
+      url:'/account/test/',
+      data:{
+        name:name1,
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+      },
+      success:function(res){
+        $(function(){
+        $("body").append('<iframe src="/account/test" style="display: none;" ></iframe>');
+    });
+        // alert(res);
+      }
+    });
+}
+</script>
+
+ 
+          </td>
+          <td>
+        {% ifequal book.user.username user.get_username %} 
+            <form method="POST" action="{% url 'delete_view' book.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+        {% endifequal %}
+          </td>
+        </tr>
+
+ 
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% else %}
+  <p>You are not logged in..</p>
+  {% endif %}
+
+
+
+
+
+{% endblock %}
+
+
+
+

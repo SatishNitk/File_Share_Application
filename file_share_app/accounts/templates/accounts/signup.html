@@ -1,0 +1,31 @@
+{% extends "accounts/bash.html" %}
+
+
+{% block content%}
+
+{{error}}
+<br/>
+<div class="container" style="margin-left: 40%">
+<form method="POST" action = "{% url 'signup_view' %}">
+
+	{% csrf_token%}
+	username:<br/> 
+	<input type="text" name="username">
+	<br/>
+	<br/>
+	password: <br/>
+	<input type="text" name="password">
+	<br />
+	<br/>
+	confirm_password: <br />
+	<input type="text" name="confirm_password">
+	<br/>
+	<br/>
+	<input type="submit" name="btnsubmit" value="signup !" class="btn btn-primary">
+
+
+
+</form>
+</div>
+
+{% endblock %}
