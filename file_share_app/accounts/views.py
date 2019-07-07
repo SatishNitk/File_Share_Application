@@ -185,7 +185,7 @@ def imagedownloader_view(request, filename):
     return response
 
 def all_downloader_view(request, filename):
-    path = "/home/satish/FILE-SHARE-APP/file_share_app/file_share_project/media/books/pdfs/" + filename
+    path = "/home/satish/django_file_share_app/File_Share_Application/file_share_app/media/books/pdfs/" + filename
     f = open(path,"rb") 
     print("path",path)
     response = HttpResponse()
