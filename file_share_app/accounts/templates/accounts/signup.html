@@ -3,9 +3,10 @@
 
 {% block content%}
 
-{{error}}
+
 <br/>
 <div class="container" style="margin-left: 40%">
+	{{error}}
 <form method="POST" action = "{% url 'signup_view' %}">
 
 	{% csrf_token%}
@@ -14,11 +15,11 @@
 	<br/>
 	<br/>
 	password: <br/>
-	<input type="text" name="password">
+	<input type="password" name="password">
 	<br />
 	<br/>
 	confirm_password: <br />
-	<input type="text" name="confirm_password">
+	<input type="password" name="confirm_password">
 	<br/>
 	<br/>
 	<input type="submit" name="btnsubmit" value="signup !" class="btn btn-primary">
